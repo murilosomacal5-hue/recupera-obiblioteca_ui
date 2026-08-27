@@ -28,24 +28,24 @@ function mostrarErro(msg) {
 // ----- TAREFA 1: renderizar os livros na tela -----
 async function renderizarLivros(livros) {
   let Cardlivros = document.createElement("div")
-        for(let i = 0;i< livros.length;i++){
-            const card = document.createElement("div")
-            const id = livros[i].id
-            card.id=`card-${id}`
-            card.innerHTML=`
-            <h3 id="id-tarefa">ID:${id}</h3>
-            <h3 id="titulo-meu">${livros[i].titulo}</h3>
-            <p id="desc">${livros[i].autor}</p>
-            <p id="empres">${livros[i].disponivel}</p>
-            <button id="emprestar" onclick="alternarStatus(${id})"> Emprestar</button>
-            <button onclick="removerLivro(${id})">Excluir</button>
-            `   
-            console.log("status",livros[i].disponivel)
-            Cardlivros.appendChild(card)
-        }
-        listaEl.innerHTML= ``
-        listaEl.appendChild(Cardlivros)
-        console.log(listaEl)
+    for(let i = 0;i< livros.length;i++){
+      const card = document.createElement("div")
+      const id = livros[i].id
+      card.id=`card-${id}`
+      card.innerHTML=`
+      <h3 id="id-tarefa">ID:${id}</h3>
+      <h3 id="titulo-meu">${livros[i].titulo}</h3>
+      <p id="desc">${livros[i].autor}</p>
+      <p id="empres">${livros[i].disponivel}</p>
+      <button id="emprestar" onclick="alternarStatus(${id})"> Emprestar</button>
+      <button onclick="removerLivro(${id})">Excluir</button>
+      `   
+    console.log("status",livros[i].disponivel)
+    Cardlivros.appendChild(card)
+}
+  listaEl.innerHTML= ``
+  listaEl.appendChild(Cardlivros)
+  console.log(listaEl)
 };
 
 // ----- TAREFA 2: cadastrar um novo livro (POST) -----
