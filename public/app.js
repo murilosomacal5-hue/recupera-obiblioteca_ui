@@ -50,7 +50,19 @@ async function renderizarLivros(livros) {
 
 // ----- TAREFA 2: cadastrar um novo livro (POST) -----
 form.addEventListener('submit', async (event) => {
-
+event.preventDefault()
+  const dados = {}
+   dados.titulo = document.getElementById("input-titulo").value
+   dados.autor = document.getElementById("input-autor").value
+   dados.ano = document.getElementById("input-ano").value
+   console.log(dados.titulo)
+   const response = await fetch("/livros",{
+     method:'POST',
+     headers:{'Content-Type': 'application/json'},
+     body:JSON.stringify({"titulo": dados.titulo,"autor":dados.autor,"ano":dados.ano,"disponivel":1},)
+   })
+   location.reload()
+   alert("Livro Cadastrado")
 });
 
 // ----- TAREFA 3: remover um livro (DELETE) -----
@@ -73,12 +85,8 @@ async function removerLivro(id) {
 
 // ----- TAREFA 4: emprestar / devolver um livro (PUT) -----
 async function alternarStatus(livro) {
-  // TAREFA: descobrir o novo valor de "disponivel" (inverter o atual: 1 vira 0, 0 vira 1)
-  // TAREFA: fazer fetch PUT para a rota PUT enviando
-  //       { disponivel: novoValor } no body, com headers corretos
-  //       OBS: A rota PUT precisa ser criada no back-end
-  // TAREFA: tratar erro com a função mostrarErro
-  // TAREFA: se der certo, chamar carregarLivros() para atualizar a lista
+  const livros = await fetch(`/livros/${id}`)
+  const meulivro = livros.json()
 }
 
 carregarLivros();
